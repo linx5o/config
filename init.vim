@@ -23,6 +23,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
+Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
+Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+
 call plug#end()
 
 
@@ -82,17 +85,6 @@ vim.api.nvim_set_keymap('n', '<C-e>', '<cmd>NvimTreeFindFileToggle<CR>', { norem
 
 require'alpha'.setup(require'alpha.themes.startify'.config)
 
-
-require('telesecope').setup {
-	defaults = {
-		mappings = {
-			i = {
-				["<C-x>"] = false,
-				["<C-q>"] = actions.send_to_qflist,
-			},
-		},
-	},
-}
 
 
 END
