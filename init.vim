@@ -26,6 +26,26 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
 Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
 
+Plug 'https://github.com/tpope/vim-fugitive' " Git commands
+
+Plug 'https://github.com/lewis6991/gitsigns.nvim' " Git signs
+
+if has('nvim')
+  function! UpdateRemotePlugins(...)
+    " Needed to refresh runtime files
+    let &rtp=&rtp
+    UpdateRemotePlugins
+  endfunction
+
+  Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+else
+  Plug 'gelguy/wilder.nvim'
+
+  " To use Python remote plugin features in Vim, can be skipped
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 call plug#end()
 
 
@@ -85,6 +105,7 @@ vim.api.nvim_set_keymap('n', '<C-e>', '<cmd>NvimTreeFindFileToggle<CR>', { norem
 
 require'alpha'.setup(require'alpha.themes.startify'.config)
 
+require'gitsigns'.setup()
 
 
 END
@@ -104,5 +125,12 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 
+call wilder#setup({
+      \ 'modes': [':', '/', '?'] 
+      \ }) 
 
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ }))
 
+colorscheme slate
