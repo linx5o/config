@@ -134,3 +134,8 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
       \ }))
 
 colorscheme slate
+
+hi GitSignsAdd ctermfg=Green ctermbg=NONE guifg=#81e043 guibg=NONE
+hi GitSignsChange ctermfg=Blue ctermbg=NONE guifg=#4280e3 guibg=NONE
+hi GitSignsDelete ctermfg=Red ctermbg=NONE guifg=#6c17ad guibg=NONE
+
